@@ -80,10 +80,7 @@
     text-transform: uppercase;
   }
   
-  .payment-info {
-    margin-top: 20px;
-    font-size: 14px;
-  }
+ 
   
   .total-section {
     margin-top: 10px;
@@ -114,4 +111,10 @@
     justify-content: space-between;
     align-items: center;
    
+  }
+
+  .btn__actions{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
   }
