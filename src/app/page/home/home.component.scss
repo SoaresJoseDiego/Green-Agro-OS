@@ -118,3 +118,18 @@
     justify-content: space-evenly;
     align-items: center;
   }
+
+  .img__inside-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; 
+  }
+
+  .green-structure {
+    background-color: #e0f7e0;
+    border: 2px solid #4caf50; 
+    border-radius: 10px; 
+    padding: 20px; 
+    margin-bottom: 20px;
+  }

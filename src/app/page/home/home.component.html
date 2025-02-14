@@ -30,22 +30,22 @@
   <p>Nenhuma ordem de serviço criada.</p>
 </div>
 } @for (dataForm of orderList; track $index) {
-<div class="invoice-container" [id]="'invoice-' + $index">
-  <h1 style="text-align: center;">ORDEM DE SERVIÇO</h1>
-  <div class="invoice-header__wrapper">
-    <div class="invoice-header">
-      <p><strong>CLIENTE:</strong>{{ dataForm.clientName }}</p>
-      <p><strong>CPF/CNPJ:</strong> {{ dataForm.CPFOrCNPJ | cpfCnpj }}</p>
-      <p><strong>ENDEREÇO:</strong> {{ dataForm.address }}</p>
-      <p><strong>CIDADE:</strong> {{ dataForm.city }}</p>
-      <p><strong>CEP:</strong> {{ dataForm.CEP | cep }}</p>
-      <p><strong>TELEFONE:</strong> {{ dataForm.phone | numberPhone }}</p>
-      <p><strong>E-MAIL:</strong>{{ dataForm.email }}</p>
+  <div class="invoice-container green-structure" [id]="'invoice-' + $index">
+    <div class="img__inside-table">
+      <img src="../../../assets/logo-2.png" width="250px" height="250px" alt="logo"/>
     </div>
-    <div>
-      <img src="../../../assets/logo-2.png" alt="logo" width="250px" height="250px"/>
+    <h1 style="text-align: center;">ORDEM DE SERVIÇO</h1>
+    <div class="invoice-header__wrapper">
+      <div class="invoice-header">
+        <p><strong>CLIENTE:</strong>{{ dataForm.clientName }}</p>
+        <p><strong>CPF/CNPJ:</strong> {{ dataForm.CPFOrCNPJ | cpfCnpj }}</p>
+        <p><strong>ENDEREÇO:</strong> {{ dataForm.address }}</p>
+        <p><strong>CIDADE:</strong> {{ dataForm.city }}</p>
+        <p><strong>CEP:</strong> {{ dataForm.CEP | cep }}</p>
+        <p><strong>TELEFONE:</strong> {{ dataForm.phone | numberPhone }}</p>
+        <p><strong>E-MAIL:</strong>{{ dataForm.email }}</p>
+      </div>
     </div>
-  </div>
 
   <table class="invoice-table">
     <thead>
