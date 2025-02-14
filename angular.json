@@ -23,7 +23,6 @@
               "dompurify",
               "core-js"
             ],
-
             "outputPath": "dist/green-agro",
             "index": "src/index.html",
             "browser": "src/main.ts",
