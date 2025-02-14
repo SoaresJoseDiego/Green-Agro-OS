@@ -15,10 +15,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-        
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "allowedCommonJsDependencies": ["canvg", "html2canvas", "dompurify"],
+            "allowedCommonJsDependencies": [
+              "canvg",
+              "html2canvas",
+              "dompurify",
+              "core-js"
+            ],
+
             "outputPath": "dist/green-agro",
             "index": "src/index.html",
             "browser": "src/main.ts",
