@@ -45,16 +45,19 @@ export class HomeComponent {
   }
 
   async downloadPDF(index: number) {
-    const element =  document.getElementById(`invoice-${index}`);
+    const element = document.getElementById(`invoice-${index}`);
     console.log(element);
     if (element) {
       const canvas = await html2canvas(element);
       const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('l', 'px', 'a4');
-      const imgProps = pdf.getImageProperties(imgData);
+      const pdf = new jsPDF('l', 'mm', 'a4'); 
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width ;
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = 290;
+      const imgHeight = 190; 
+      const x = (pdfWidth - imgWidth) / 2; 
+      const y = 10; 
+      pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
       pdf.save(`OrdemDeServico_${index + 1}.pdf`);
     }
     this.hideButton = false;

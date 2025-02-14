@@ -133,3 +133,17 @@
     padding: 20px; 
     margin-bottom: 20px;
   }
+
+  @media (max-width: 1024px) {
+    .img__inside-table img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .img__inside-table img {
+      width: 150px;
+      height: 150px;
+    }
+  }
