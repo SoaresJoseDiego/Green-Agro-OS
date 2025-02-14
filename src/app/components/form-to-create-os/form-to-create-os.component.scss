@@ -1,0 +1,59 @@
+.form_content{
+    width: 100%;
+    padding: 1rem;
+
+    
+}
+
+.form__group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    flex-wrap: wrap;
+}
+
+.form__group-dataOS{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 3rem;
+}
+
+:host ::ng-deep .p-dropdown {
+    width: 220px ; 
+  }
+
+
+
+.form__group div{
+
+    padding: 0.50rem;
+}
+
+.btn__to-next-back{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.btn__create-os{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.input__to-create-offer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+

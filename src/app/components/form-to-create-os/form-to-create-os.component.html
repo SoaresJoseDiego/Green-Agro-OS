@@ -1,0 +1,93 @@
+<div class="form_content">
+  <p-stepper>
+    <!-- Etapa 1 - Dados do Cliente -->
+    <p-stepperPanel header="Dados do Cliente">
+      <ng-template pTemplate="content" let-nextCallback="nextCallback">
+        <form [formGroup]="form">
+          <h3>Dados do Cliente</h3>
+          <div class="form__group">
+            <div>
+              <input type="text" formControlName="clientName" pInputText placeholder="Nome do Cliente*" required />
+            </div>
+            <div>
+              <input type="text" formControlName="CPFOrCNPJ" pInputText placeholder="CPF/CNPJ*" required />
+            </div>
+            <div>
+              <input type="text" formControlName="address" pInputText placeholder="Endereço*" required />
+            </div>
+            <div>
+              <input type="text" formControlName="city" pInputText placeholder="Cidade*" required />
+            </div>
+            <div>
+              <input type="text" formControlName="CEP" pInputText placeholder="CEP*" required />
+            </div>
+            <div>
+              <input type="text" formControlName="phone" pInputText placeholder="Telefone*" required />
+            </div>
+            <div>
+              <input type="text" formControlName="email" pInputText placeholder="Email*" required />
+            </div>
+          </div>
+
+          <div class="btn__to-next-back">
+            <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="nextCallback.emit()" />
+          </div>
+        </form>
+      </ng-template>
+    </p-stepperPanel>
+
+    <!-- Etapa 2 - Dados da OS -->
+    <p-stepperPanel header="Dados da OS">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
+        <form [formGroup]="form">
+          <h3>Dados da OS</h3>
+          <div class="form__group-dataOS" formGroupName="dataOS">
+            <div>
+              <p-dropdown formControlName="classifier" [options]="classifierList" optionLabel="name" placeholder="Classificador*" ></p-dropdown>
+            </div>
+            <div>
+              <p-dropdown formControlName="typeService" [options]="typeService" optionLabel="name" placeholder="Serviço*"></p-dropdown>
+            </div>
+            <div>
+              <input type="text" pInputText formControlName="local" placeholder="Local*" required />
+            </div>
+            <div>
+              <p-calendar formControlName="date" appendTo="body" [(ngModel)]="date" dateFormat="dd/mm/yy" placeholder="Selecione uma data" />
+            </div>
+          </div>
+
+          <div class="btn__to-next-back">
+            <p-button label="Voltar" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+            <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="nextCallback.emit()" />
+          </div>
+        </form>
+      </ng-template>
+    </p-stepperPanel>
+
+    <!-- Etapa de criar descrição e valor-->
+    <p-stepperPanel header="Criar Ofertas">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback">
+        <h3>Criar Ofertas</h3>
+        <form [formGroup]="form">
+          <div formGroupName="dataOS">
+            <div formArrayName="createOffer">
+              <div class="input__to-create-offer" *ngFor="let offer of createOffer.controls; let i = index" [formGroupName]="i">
+                <input type="number" formControlName="quantity" pInputText placeholder="Quantidade*" required />
+                <input type="text" formControlName="description" pInputText placeholder="Descrição*" required />
+                <input type="number" formControlName="price" pInputText placeholder="Preço*" required />
+                <p-button  [rounded]="true" severity="danger" icon="pi pi-times" (onClick)="removeOffer(i)" />
+              </div>
+            </div>
+            <div>
+              <p-button label="Adicionar Oferta" icon="pi pi-plus" (onClick)="addOffer()" />
+            </div>
+          </div>
+        </form>
+        <div class="btn__to-next-back">
+          <p-button label="Voltar" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+          <p-button label="Criar OS" severity="success" icon="pi pi-plus" (onClick)="onSubmit()" type="submit" />
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+  </p-stepper>
+</div>

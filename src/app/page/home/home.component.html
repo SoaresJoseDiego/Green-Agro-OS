@@ -1,0 +1,117 @@
+<div class="content__path">
+  <div class="logo__picture">
+    <img src="../../../assets/logo-2.png" alt="logo" />
+  </div>
+  <div class="title__OS">
+    <h1>ORDEM DE SERVIÇO</h1>
+    <p-divider />
+  </div>
+</div>
+<p-divider />
+
+<div>
+  <div class="btn__to-show">
+    <p-button label="Gerar OS" (onClick)="showDialog()"></p-button>
+  </div>
+  <p-dialog
+    header="Gerar OS"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '50rem' }"
+  >
+    <app-form-to-create-os
+      (formData)="onFormDataReceived($event)"
+    ></app-form-to-create-os>
+  </p-dialog>
+</div>
+
+@if (orderList.length === 0) {
+<div class="warn__user-no-order">
+  <p>Nenhuma ordem de serviço criada.</p>
+</div>
+} @for (dataForm of orderList; track $index) {
+<div class="invoice-container" [id]="'invoice-' + $index">
+  <h1 style="text-align: center;">ORDEM DE SERVIÇO</h1>
+  <div class="invoice-header__wrapper">
+    <div class="invoice-header">
+      <p><strong>CLIENTE:</strong>{{ dataForm.clientName }}</p>
+      <p><strong>CPF/CNPJ:</strong> {{ dataForm.CPFOrCNPJ | cpfCnpj }}</p>
+      <p><strong>ENDEREÇO:</strong> {{ dataForm.address }}</p>
+      <p><strong>CIDADE:</strong> {{ dataForm.city }}</p>
+      <p><strong>CEP:</strong> {{ dataForm.CEP | cep }}</p>
+      <p><strong>TELEFONE:</strong> {{ dataForm.phone | numberPhone }}</p>
+      <p><strong>E-MAIL:</strong>{{ dataForm.email }}</p>
+    </div>
+    <div>
+      <img src="../../../assets/logo-2.png" alt="logo" width="250px" height="250px"/>
+    </div>
+  </div>
+
+  <table class="invoice-table">
+    <thead>
+      <tr>
+        <th>CLASSIFICADOR</th>
+        <th>LOCAL</th>
+        <th>TIPO DE SERVIÇO</th>
+        <th>DATA DE VENCIMENTO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ dataForm.dataOS?.classifier.name }}</td>
+        <td>{{ dataForm.dataOS?.local }}</td>
+        <td>{{ dataForm.dataOS?.typeService.name }}</td>
+        <td>{{ dataForm.dataOS?.date | date: 'dd/MM/yyyy' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="invoice-table">
+    <thead>
+      <tr>
+        <th>QTD</th>
+        <th>DESCRIÇÃO</th>
+        <th>PREÇO/CARGA</th>
+        <th>TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (offer of dataForm.dataOS.createOffer; track $index) {
+      <tr>
+        <td>{{ offer.quantity }}</td>
+        <td>{{ offer.description }}</td>
+        <td>R$ {{ offer.price }}</td>
+        <td>R$ {{ offer.price * offer.quantity }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="payment-info">
+    <p><strong>Pix para pagamento:</strong> 18996260944</p>
+    <p>Jean Carlos Ribeiro Soares</p>
+    <p>NUBANK</p>
+  </div>
+
+  <div class="total-section">
+    <p><strong>SUBTOTAL:</strong>R$ {{ getSubtotal(dataForm) }}</p>
+  </div>
+  @if(hideButton == false){
+    <div class="btn__actions">
+      <p-button
+        label="Baixar PDF"
+        icon="pi pi-download"
+        (onClick)="testTimeout($index)"
+      ></p-button>
+      <p-button
+        label="Excluir"
+        icon="pi pi-trash"
+        severity="danger"
+        (onClick)="deleteOrder($index)"
+      ></p-button>
+    </div>
+  } @else {
+    <div></div>
+  }
+</div>
+}
