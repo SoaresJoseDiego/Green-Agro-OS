@@ -23,11 +23,14 @@ export class HomeComponent {
 
   onFormDataReceived(formData: any) {
     this.orderList.push(formData);
+    this.visible = false;
   }
 
   showDialog() {
     this.visible = true;
   }
+
+ 
 
   testTimeout(index: number) {
     this.hideButton = true;
