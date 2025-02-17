@@ -1,6 +1,5 @@
-import { Component, DEFAULT_CURRENCY_CODE, LOCALE_ID} from '@angular/core';
+import { Component} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
